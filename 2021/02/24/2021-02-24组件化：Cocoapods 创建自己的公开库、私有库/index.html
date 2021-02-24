@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="创建公开库1.注册Trunk$pod trunk me  没有注册过，需要注册trunk 注册// 加上--verbose可以输出详细debug信息，方便出错时查看。 //developeng@163.com -- 自己的邮箱 //developeng         -- 自己的用户名称（随意起） pod trunk register developeng@163.com &amp;quot;devel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="developeng">
+<meta property="og:url" content="http://developeng.com/2021/02/24/2021-02-24组件化：Cocoapods 创建自己的公开库、私有库/index.html">
+<meta property="og:site_name" content="developeng">
+<meta property="og:description" content="创建公开库1.注册Trunk$pod trunk me  没有注册过，需要注册trunk 注册// 加上--verbose可以输出详细debug信息，方便出错时查看。 //developeng@163.com -- 自己的邮箱 //developeng         -- 自己的用户名称（随意起） pod trunk register developeng@163.com &amp;quot;devel">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBfedb82d2c9422e83d9ca0a976f3ad783?method=download&shareKey=ac4d537a1f2ec114d27a309d0ea7076f">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB570928a19bf95c830be68ff8fa595f51?method=download&shareKey=fc4a6733274cebc3211fcbacb630169a">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB5a1f6aea94c7718f0259d1aa7e08bd38?method=download&shareKey=2e6d6fc2f30a7eaba9c2fc4bd5f7249b">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB533ecf3fa9ef954fa1a9ce019c83b161?method=download&shareKey=c2a07341316aa3da8ff25a5c6bf98a97">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBb9cd2ebc0a25e54fd51981f4ac435aaa?method=download&shareKey=e1e9a8fced6a51e150c54e9099872bca">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBc753700d088ee1d6ef3d181b7dbc179e?method=download&shareKey=0073181a1f008e0c7fdb4898a664ba3c">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBbedad9c541b4c2168025539f118f3a0d?method=download&shareKey=5313b1ec8ba0495ee691ad8e7f2b5948">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBaf6b989958dc9a8cfa8cf0fcd459826a?method=download&shareKey=b32bcb4cf501a575639b66ff10c81fe2">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB03e85e047f7010ade4ad8e01c81f1613?method=download&shareKey=2d384334a232b6df73b88fa2dd0b745f">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB4da7c888052bb897f3bccd6fbcea86ab?method=download&shareKey=63350791425b49ffb18ed83fec0a2d97">
+<meta property="og:updated_time" content="2021-02-24T03:47:43.240Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="developeng">
+<meta name="twitter:description" content="创建公开库1.注册Trunk$pod trunk me  没有注册过，需要注册trunk 注册// 加上--verbose可以输出详细debug信息，方便出错时查看。 //developeng@163.com -- 自己的邮箱 //developeng         -- 自己的用户名称（随意起） pod trunk register developeng@163.com &amp;quot;devel">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/WEBfedb82d2c9422e83d9ca0a976f3ad783?method=download&shareKey=ac4d537a1f2ec114d27a309d0ea7076f">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://developeng.com/2021/02/24/2021-02-24组件化：Cocoapods 创建自己的公开库、私有库/"/>
+
+
+
+
+
+  <title> | developeng</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">developeng</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">雷锋塔下盼轮回，不及你浅笑一枚。西湖细柳缘纷飞，可叹可恨独自醉。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://developeng.com/2021/02/24/2021-02-24组件化：Cocoapods 创建自己的公开库、私有库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="developeng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/headImage.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="developeng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-24T11:47:43+08:00">
+                2021-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="创建公开库"><a href="#创建公开库" class="headerlink" title="创建公开库"></a>创建公开库</h2><h3 id="1-注册Trunk"><a href="#1-注册Trunk" class="headerlink" title="1.注册Trunk"></a>1.注册Trunk</h3><pre><code>$pod trunk me
+</code></pre><p><img src="https://note.youdao.com/yws/api/personal/file/WEBfedb82d2c9422e83d9ca0a976f3ad783?method=download&amp;shareKey=ac4d537a1f2ec114d27a309d0ea7076f" alt="image"></p>
+<p>没有注册过，需要注册trunk</p>
+<h4 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h4><pre><code>// 加上--verbose可以输出详细debug信息，方便出错时查看。
+//developeng@163.com -- 自己的邮箱
+//developeng         -- 自己的用户名称（随意起）
+pod trunk register developeng@163.com &quot;developeng&quot; --verbose
+</code></pre><p><img src="https://note.youdao.com/yws/api/personal/file/WEB570928a19bf95c830be68ff8fa595f51?method=download&amp;shareKey=fc4a6733274cebc3211fcbacb630169a" alt="image"></p>
+<p>注册完成之后会给你的邮箱发个邮件,进入邮箱邮件里面有个链接,需要点击确认一下<br><img src="https://note.youdao.com/yws/api/personal/file/WEB5a1f6aea94c7718f0259d1aa7e08bd38?method=download&amp;shareKey=2e6d6fc2f30a7eaba9c2fc4bd5f7249b" alt="image"></p>
+<h4 id="注册成功后可以再查看一下个人信息pod-trunk-me"><a href="#注册成功后可以再查看一下个人信息pod-trunk-me" class="headerlink" title="注册成功后可以再查看一下个人信息pod trunk me"></a>注册成功后可以再查看一下个人信息pod trunk me</h4><p><img src="https://note.youdao.com/yws/api/personal/file/WEB533ecf3fa9ef954fa1a9ce019c83b161?method=download&amp;shareKey=c2a07341316aa3da8ff25a5c6bf98a97" alt="image"></p>
+<h3 id="2-代码托管到平台上"><a href="#2-代码托管到平台上" class="headerlink" title="2. 代码托管到平台上"></a>2. 代码托管到平台上</h3><p>将代码托管到在github或者coding,SVN,公司私有服务器等，这里采用github</p>
+<p>项目目录：<img src="https://note.youdao.com/yws/api/personal/file/WEBb9cd2ebc0a25e54fd51981f4ac435aaa?method=download&amp;shareKey=e1e9a8fced6a51e150c54e9099872bca" alt="image"></p>
+<p>创建远程仓库，将代码托管到github上<br>（创建远程仓库时可勾选 Choose a license<br>选择 MIT License,不勾选后面添加也可以）</p>
+<p>本地文件初始化仓库 </p>
+<p>进入源代码根目录：</p>
+<pre><code>$cd /Users/zhaopeng/Desktop/JAwork/Swift/DPPhotoBrowser 
+</code></pre><p>git初始化仓库：</p>
+<pre><code>$git init
+</code></pre><p>创建Podspec文件</p>
+<pre><code>pod spec create DPPhotoBrowser
+</code></pre><p><img src="https://note.youdao.com/yws/api/personal/file/WEBc753700d088ee1d6ef3d181b7dbc179e?method=download&amp;shareKey=0073181a1f008e0c7fdb4898a664ba3c" alt="image"></p>
+<p>此时目录下多了DPPhotoBrowser.podspec 文件</p>
+<p>编辑DPPhotoBrowser.podspec文件：</p>
+<pre><code>Pod::Spec.new do |spec|
+
+    spec.name         = &quot;DPPhotoBrowser&quot;
+    spec.version      = &quot;0.0.1&quot;
+    spec.summary      = &quot;图片放大查看，图片保存&quot;
+    spec.homepage     = &quot;https://github.com/developeng/DPPhotoBrowser&quot;
+    spec.license      = &quot;MIT&quot;
+    spec.author             = { &quot;developeng&quot; =&gt; &quot;developeng@163.com&quot; }
+    spec.swift_version  = &quot;5.0&quot;
+    spec.platform     = :ios, &quot;10.0&quot;
+    spec.source       = { :git =&gt; &quot;https://github.com/developeng/DPPhotoBrowser.git&quot;, :tag =&gt; spec.version }
+    spec.source_files  = &quot;DPPhotoBrowser/DPPhotoBrowser/*.swift&quot;
+    spec.frameworks = &quot;UIKit&quot;, &quot;Foundation&quot;
+    spec.requires_arc = true
+    spec.dependency &apos;Kingfisher&apos;, &apos;~&gt; 6.1.0&apos;
+</code></pre><p>end</p>
+<p>各个参数含义</p>
+<p>==spec.name==： –名称，pod search         搜索的关键词,注意这里一定要和.podspec的名称一致。</p>
+<p>==spec.version==： – 版本号</p>
+<p>==spec.summary==： – 库的作用简介</p>
+<p>==spec.homepage==：– 项目主页地址</p>
+<p>==spec.license==： – 许可证</p>
+<p>==spec.author==：–作者</p>
+<p>==spec.swift_version==：–swift版本</p>
+<p>==spec.platform==：–库运行的平台和系统的最低版本</p>
+<p>==spec.source==：–项目的地址</p>
+<p>==spec.source_files==：–需要包含的源文件</p>
+<p>==spec.frameworks==：–声明了库所依赖的系统核心库</p>
+<p>==spec.requires_arc==：–是否支持ARC</p>
+<p>==spec.dependency==：–我们开发的库中也可能还依赖第三方库</p>
+<p>常见的写法：</p>
+<p>1.dependency:写法</p>
+<pre><code>spec.dependency = &apos;AFNetworking&apos; , &apos;SDWebImage&apos;
+</code></pre><p>2.source_files: 写法</p>
+<pre><code>&apos;DPPhotoBrowser/*&apos;
+&apos;DPPhotoBrowser/DPPhotoBrowser/*.{h,m，swift}&apos;
+&apos;DPPhotoBrowser/**/*.h&apos;
+
+&apos;*&apos;表示匹配所有文件
+
+&apos;*.{h,m,swift}&apos; 表示匹配所有以.h,.m,.swift结尾的文件
+
+&apos;**&apos; 表示匹配所有子目录
+</code></pre><p>如果前面没有选择创建这个LICENSE文件， 创建LICENSE(许可证/授权)文件,此文件必须要有<br>创建一个文件名字命名为LICENSE,内容为:只需要把前面的版权改一下就行了,后面的都一样</p>
+<pre><code>MIT License
+
+Copyright (c) 2021 developeng
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+</code></pre><p>如果修正后，仍然报和之前相同的错误，可尝试：</p>
+<pre><code>$pod cache list //查看缓存
+$pod cache clean --all //清除缓存
+$pod cache clean &apos;DPPhotoBrowser&apos; --all //将删除所有已安装的“DPPhotoBrowser”的pods
+</code></pre><p>上传到Git<br>将包含配置好的 .podspec, LICENSE 的项目提交 Git</p>
+<pre><code>$cd /Users/zhaopeng/Desktop/JAwork/Swift/DPPhotoBrowser 
+$git add .
+$git commit -m &quot;提交项目&quot;
+$git push origin main
+</code></pre><p>打 tag版本</p>
+<pre><code>//本地打tag版本，（此处验证加v会报错）
+$git tag &quot;0.0.1&quot;
+
+//将tag推送到远程仓库
+$git push --tags
+
+//如果tag打错了，需要删除如何操作：
+//查看tags
+$git tag
+
+//删除本地tags(例如：git tag -d 0.0.1)
+$git tag -d + 分支名称就会删除本地的分支
+
+//删除远程分支(例如：git push origin :refs/tags/0.0.1)
+$git push origin :refs/tags/分支名称
+</code></pre><p>验证.podspec文件</p>
+<pre><code>$pod spec lint DPPhotoBrowser.podspec
+
+//--verbose 如果验证失败会报错误信息
+$pod spec lint DPPhotoBrowser.podspec --verbose
+
+//项目可能同时依赖了本地的framework与.a这个时候要在校验spec文件的时候加参数  --allow-warnings
+$pod lib lint --allow-warnings
+</code></pre><p><img src="https://note.youdao.com/yws/api/personal/file/WEBbedad9c541b4c2168025539f118f3a0d?method=download&amp;shareKey=5313b1ec8ba0495ee691ad8e7f2b5948" alt="image"><br>通过验证</p>
+<p>发布podspec</p>
+<pre><code>$pod trunk push DPPhotoBrowser.podspec
+</code></pre><p>出现这种情况就说明你发布成功了，等待审核</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEBaf6b989958dc9a8cfa8cf0fcd459826a?method=download&amp;shareKey=b32bcb4cf501a575639b66ff10c81fe2" alt="image"></p>
+<p>验证仓库</p>
+<p>1.执行pod search xxx</p>
+<pre><code>$pod search DPPhotoBrowser
+</code></pre><p><img src="https://note.youdao.com/yws/api/personal/file/WEB03e85e047f7010ade4ad8e01c81f1613?method=download&amp;shareKey=2d384334a232b6df73b88fa2dd0b745f" alt="image"></p>
+<p>审核通过，如果报错未发现可能还处于审核中，需等待，可以通过其他辅助手段去验证；</p>
+<p>1、执行 pod trunk me 命令,看看有没有你的库</p>
+<pre><code>$pod trunk me
+</code></pre><p><img src="https://note.youdao.com/yws/api/personal/file/WEB4da7c888052bb897f3bccd6fbcea86ab?method=download&amp;shareKey=63350791425b49ffb18ed83fec0a2d97" alt="image"></p>
+<h2 id="创建私有库（私有库不需要注册Trunk）"><a href="#创建私有库（私有库不需要注册Trunk）" class="headerlink" title="创建私有库（私有库不需要注册Trunk）"></a>创建私有库（私有库不需要注册Trunk）</h2><p>1.创建一个私有的项目（可以是公司自己的git管理工具、也可以是码云上的）</p>
+<p>2.创建.podspec（同上）</p>
+<p>3.编辑.podspec文件（同上）</p>
+<p>4.上传到Git</p>
+<p>5.打tag</p>
+<p>6.验证.podspec文件</p>
+<p>7.添加一个私有库并和项目地址做绑定 </p>
+<pre><code>1.新建一个我们保存podspec文件的远端仓库（可以命名为MyRepo），用来存储、管理和维护specs文件
+https://xxx/MyRepo.git
+
+2.绑定
+//MyRepo: MyRepo用来存放所有私有库各个版本的描述文件
+//https://github.com/developeng/DPPhotoBrowser.git --自己的项目地址（第一步创建的）
+
+$pod repo add MyRepo https://github.com/developeng/DPPhotoBrowser.git
+
+//查看在 Finder 目录cd  ~/.cocoapods/repos， 可以发现增加了一个 MyRepo 的储存库
+或者 pod repo list
+</code></pre><p>8.向私有的库里添加podspec文件(将我们的代码仓库的描述信息，push 到我们的版本仓库中)</p>
+<p>　　先更新下我们的版本库 pod repo update MyRepo  （要不然会报错）</p>
+<pre><code>$pod repo update MyRepo
+$pod repo push MyRepo xxxx.podspec
+或者
+$pod repo push MyRepo ~/Desktop/xxx/xxx.podspec --allow-warnings
+//~/Desktop/xxx/xxx.podspec 为xxx.podspec文件路径
+//作用：1.在本地repo/MyRepo仓库添加我们的podspec文件  2.在我们的远端存放podspec仓库里push最新的podspec文件
+</code></pre><p>9.新建项目进行验证</p>
+<p>xcode新建项目 在podfile中添加</p>
+<pre><code>source &apos;https://xxx/MyRepo.git&apos; //**注意**此链接是版本库的地址，而不是代码库的地址(一定要写)，
+source &apos;https://github.com/CocoaPods/Specs.git&apos;//若有还使用了公有的pod库，需要把公有库地址也带上
+
+platform :ios, &apos;9.0&apos;
+
+target &apos;MyPodTest&apos; do
+use_frameworks!
+
+pod &apos;DPPodTestDemo&apos;, &apos;~&gt; 0.0.1&apos;  #私有库
+pod &apos;AFNetWorking&apos;#开源库
+end
+</code></pre><p>执行 pod install 命令时:</p>
+<p>1.会拉取远程 Podflie 中source标记的版本库 到本地的repos 文件夹中<br>2.在 版本库 中搜索我们pod ‘DPPodTestDemo’ 的 DPPodTestDemo.podspec 文件。<br>3.根据 DPPodTestDemo.podspec 文件中描述的源码地址下载并整合到项目中</p>
+<p>也可以直接指定私有库地址</p>
+<pre><code>pod &apos;DPPodTestDemo&apos;, :git =&gt; &apos;https://xxx/DPPodTestDemo.git&apos; #指定私有库远程仓库地址,还可以指定tag，committed等
+</code></pre><h2 id="更新维护"><a href="#更新维护" class="headerlink" title="更新维护"></a>更新维护</h2><p>1.对源码打tag,然后push到远端仓库</p>
+<p>2.修改podspec文件，根据你代码改动修改，tag和目录结构等，保证准确度</p>
+<p>3.验证podspec有效性，跟上面一致。进行本地验证，不通过继续修改直至通过，推送到远端私有库(验证之前需要将tag推送到远端，否则会找不到报错)</p>
+<pre><code>$pod spec lint DPPhotoBrowser.podspec --allow-warnings
+</code></pre><p>4.再次向repo提交podspec文件</p>
+<pre><code>$pod repo push MyRepo xxxx.podspec
+或者
+$pod repo push MyRepo ~/Desktop/xxx.podspec --allow-warnings
+</code></pre><p>5.查看</p>
+<pre><code>//查看在 Finder 目录cd  ~/.cocoapods/repos， 可以发现增加了一个 MyRepo 的储存库
+或者 pod repo list
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/08/测试/" rel="next" title="测试">
+                <i class="fa fa-chevron-left"></i> 测试
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/headImage.png"
+                alt="developeng" />
+            
+              <p class="site-author-name" itemprop="name">developeng</p>
+              <p class="site-description motion-element" itemprop="description">你好</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/developeng" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/5444591909/profile?topnav=1&wvr=6&is_all=1" target="_blank" title="微博">
+                    
+                      <i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.jianshu.com/u/7315f63c03dd" target="_blank" title="简书">
+                    
+                      <i class="fa fa-fw fa-jianshu"></i>简书</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:developeng@163.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建公开库"><span class="nav-number">1.</span> <span class="nav-text">创建公开库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-注册Trunk"><span class="nav-number">1.1.</span> <span class="nav-text">1.注册Trunk</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注册"><span class="nav-number">1.1.1.</span> <span class="nav-text">注册</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注册成功后可以再查看一下个人信息pod-trunk-me"><span class="nav-number">1.1.2.</span> <span class="nav-text">注册成功后可以再查看一下个人信息pod trunk me</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-代码托管到平台上"><span class="nav-number">1.2.</span> <span class="nav-text">2. 代码托管到平台上</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建私有库（私有库不需要注册Trunk）"><span class="nav-number">2.</span> <span class="nav-text">创建私有库（私有库不需要注册Trunk）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新维护"><span class="nav-number">3.</span> <span class="nav-text">更新维护</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">developeng</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
