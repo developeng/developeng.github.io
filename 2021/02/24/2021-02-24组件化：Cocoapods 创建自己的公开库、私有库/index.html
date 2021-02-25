@@ -97,7 +97,9 @@
 <meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBaf6b989958dc9a8cfa8cf0fcd459826a?method=download&shareKey=b32bcb4cf501a575639b66ff10c81fe2">
 <meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB03e85e047f7010ade4ad8e01c81f1613?method=download&shareKey=2d384334a232b6df73b88fa2dd0b745f">
 <meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB4da7c888052bb897f3bccd6fbcea86ab?method=download&shareKey=63350791425b49ffb18ed83fec0a2d97">
-<meta property="og:updated_time" content="2021-02-24T05:39:39.823Z">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBa889382c286975b7b9f2259d89afa5c1?method=download&shareKey=7a37f39fc5dbede80c3da52a6a0a9d44">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB8505df3d27e4d74c6f9a72bbcfd1f839?method=download&shareKey=366cf5d34489050eba97af7c7ab4e510">
+<meta property="og:updated_time" content="2021-02-25T02:22:20.145Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="组件化：Cocoapods 创建自己的公开库、私有库及维护">
 <meta name="twitter:description" content="创建公开库1.注册Trunk$pod trunk me  没有注册过，需要注册trunk 注册// 加上--verbose可以输出详细debug信息，方便出错时查看。 //developeng@163.com -- 自己的邮箱 //developeng         -- 自己的用户名称（随意起） pod trunk register developeng@163.com &amp;quot;devel">
@@ -541,14 +543,23 @@ end
 <p>也可以直接指定私有库地址</p>
 <pre><code>pod &apos;DPPodTestDemo&apos;, :git =&gt; &apos;https://xxx/DPPodTestDemo.git&apos; #指定私有库远程仓库地址,还可以指定tag，committed等
 </code></pre><h2 id="更新维护"><a href="#更新维护" class="headerlink" title="更新维护"></a>更新维护</h2><p>1.对源码打tag,然后push到远端仓库</p>
-<p>2.修改podspec文件，根据你代码改动修改，tag和目录结构等，保证准确度</p>
-<p>3.验证podspec有效性，跟上面一致。进行本地验证，不通过继续修改直至通过，推送到远端私有库(验证之前需要将tag推送到远端，否则会找不到报错)</p>
+<pre><code>$git tag &quot;0.0.2&quot;
+$git push --tags
+</code></pre><p>2.修改podspec文件，根据你代码改动修改，tag和目录结构等，保证准确度<br><img src="https://note.youdao.com/yws/api/personal/file/WEBa889382c286975b7b9f2259d89afa5c1?method=download&amp;shareKey=7a37f39fc5dbede80c3da52a6a0a9d44" alt="image"></p>
+<p>3.验证podspec有效性，跟上面一致。进行本地验证，不通过继续修改直至通过，推送到远端私有库(验证之前需要将tag和podspec推送到远端，否则会找不到报错)</p>
 <pre><code>$pod spec lint DPPhotoBrowser.podspec --allow-warnings
 </code></pre><p>4.再次向repo提交podspec文件</p>
-<pre><code>$pod repo push MyRepo xxxx.podspec
+<pre><code>//私有库提交
+$pod repo push MyRepo xxxx.podspec
 或者
 $pod repo push MyRepo ~/Desktop/xxx.podspec --allow-warnings
-</code></pre><p>5.查看</p>
+
+//公开库提交
+$pod trunk push DPPhotoBrowser.podspec
+</code></pre><p>注意：我公开库提交的时候报错：</p>
+<h3 id="Unable-to-accept-duplicate-entry-for-XXXXX-0-0-1"><a href="#Unable-to-accept-duplicate-entry-for-XXXXX-0-0-1" class="headerlink" title="[!] Unable to accept duplicate entry for: XXXXX (0.0.1)"></a>[!] Unable to accept duplicate entry for: XXXXX (0.0.1)</h3><p><img src="https://note.youdao.com/yws/api/personal/file/WEB8505df3d27e4d74c6f9a72bbcfd1f839?method=download&amp;shareKey=366cf5d34489050eba97af7c7ab4e510" alt="image"></p>
+<p>是因为podspec 修改后没有保存，导致没有提交到远端，保存一下，然后提交到远端，再次提交push即可</p>
+<p>5.查看</p>
 <pre><code>//查看在 Finder 目录cd  ~/.cocoapods/repos， 可以发现增加了一个 MyRepo 的储存库
 或者 pod repo list
 </code></pre>
@@ -753,7 +764,7 @@ $pod repo push MyRepo ~/Desktop/xxx.podspec --allow-warnings
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建公开库"><span class="nav-number">1.</span> <span class="nav-text">创建公开库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-注册Trunk"><span class="nav-number">1.1.</span> <span class="nav-text">1.注册Trunk</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注册"><span class="nav-number">1.1.1.</span> <span class="nav-text">注册</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注册成功后可以再查看一下个人信息pod-trunk-me"><span class="nav-number">1.1.2.</span> <span class="nav-text">注册成功后可以再查看一下个人信息pod trunk me</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-代码托管到平台上"><span class="nav-number">1.2.</span> <span class="nav-text">2. 代码托管到平台上</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建私有库（私有库不需要注册Trunk）"><span class="nav-number">2.</span> <span class="nav-text">创建私有库（私有库不需要注册Trunk）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新维护"><span class="nav-number">3.</span> <span class="nav-text">更新维护</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建公开库"><span class="nav-number">1.</span> <span class="nav-text">创建公开库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-注册Trunk"><span class="nav-number">1.1.</span> <span class="nav-text">1.注册Trunk</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注册"><span class="nav-number">1.1.1.</span> <span class="nav-text">注册</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注册成功后可以再查看一下个人信息pod-trunk-me"><span class="nav-number">1.1.2.</span> <span class="nav-text">注册成功后可以再查看一下个人信息pod trunk me</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-代码托管到平台上"><span class="nav-number">1.2.</span> <span class="nav-text">2. 代码托管到平台上</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建私有库（私有库不需要注册Trunk）"><span class="nav-number">2.</span> <span class="nav-text">创建私有库（私有库不需要注册Trunk）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新维护"><span class="nav-number">3.</span> <span class="nav-text">更新维护</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Unable-to-accept-duplicate-entry-for-XXXXX-0-0-1"><span class="nav-number">3.1.</span> <span class="nav-text">[!] Unable to accept duplicate entry for: XXXXX (0.0.1)</span></a></li></ol></li></ol></div>
             
 
           </div>
