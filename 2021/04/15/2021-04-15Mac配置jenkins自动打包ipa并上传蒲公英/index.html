@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Markdown," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="安装jenkins使用brew 命令行安装jenkins &#x2F;&#x2F;安装jenkins brew install jenkins 扩展： &#x2F;&#x2F;卸载jenkins brew uninstall jenkins 或者： &amp;apos;&#x2F;Library&#x2F;Application Support&#x2F;Jenkins&#x2F;Uninstall.command&amp;apos; 如果卸载了依然可以访问localhost:8080，需要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mac配置jenkins自动打包ipa并上传蒲公英">
+<meta property="og:url" content="http://developeng.com/2021/04/15/2021-04-15Mac%E9%85%8D%E7%BD%AEjenkins%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85ipa%E5%B9%B6%E4%B8%8A%E4%BC%A0%E8%92%B2%E5%85%AC%E8%8B%B1/index.html">
+<meta property="og:site_name" content="developeng">
+<meta property="og:description" content="安装jenkins使用brew 命令行安装jenkins &#x2F;&#x2F;安装jenkins brew install jenkins 扩展： &#x2F;&#x2F;卸载jenkins brew uninstall jenkins 或者： &amp;apos;&#x2F;Library&#x2F;Application Support&#x2F;Jenkins&#x2F;Uninstall.command&amp;apos; 如果卸载了依然可以访问localhost:8080，需要">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBd01049dda0faae45089f3b43e401e946?method=download&amp;shareKey=c83f0e8b72ef41256ac3d0f039a9bf9d">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB6c9f3ef6d2c6bdf6dfc792470de9015c?method=download&amp;shareKey=25f966bf5977cbdc6dbf08941df27f0e">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB43866c28161afb90ec4863237a610500?method=download&amp;shareKey=be8d06224b679e51edf07d918515a6cf">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBdf578c9748c7bb9c835cd63ec868ccd2?method=download&amp;shareKey=7f8b60ce2b2d3b5550619e969d1b74c0">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBf75f6165148f9ded87f9f5f2a6587469?method=download&amp;shareKey=e039d3491fde3acd7f67ca1304ee0024">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBdeb6eccd37a399027fcd19ac575f640a?method=download&amp;shareKey=29f92aeb8e7700d18e4bad85213581c1">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBc4af7144edd8ad3d524078d17cad1a8b?method=download&amp;shareKey=be0ae4ee8d63f416a78c79bd0b39df53">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBa2379f9ca427ace89cc603243cb8de38?method=download&amp;shareKey=b44635b86c24f8210f26bdaa2035fc98">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBc6c3a06a8146a61802283cacb7acb571?method=download&amp;shareKey=8d6023c8f2372e530074598dce8cfb6c">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBce627d6882762b77c2be69ea675c0c90?method=download&amp;shareKey=b266b41c66c7367b040fd1455bd2509a">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB15d806519ae6c264041474792dcd34dd?method=download&amp;shareKey=2e69ad6a6841918c43b9786e5b2eb525">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBf00f35432ee49e9037b324d72a1c2b1c?method=download&amp;shareKey=660742168581955861a4c754e35d90fa">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBf970584a4992bf593a96315160db9fcd?method=download&amp;shareKey=51dc050c5cc87a7ddc479d587a8d25bd">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB9fd9c77d8ef294b515d1476128e52bac?method=download&amp;shareKey=0f6aa6dc5450c489490b88af18f93970">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBf9e2d92eb7878cdac9f160d26470583a?method=download&amp;shareKey=6a4ff1ae3225c914466a9e9457e17e88">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB8bdb06af4ccfaec9005e93fa66585e4a?method=download&amp;shareKey=13df9f60ca0e66e459deecd1b93da3c5">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB9df58397471553ed5441d1ed011acc35?method=download&amp;shareKey=76ac1b351e4466171eef61bcbd45a365">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBd7146ca887816d3c136eefa5e60e4cc0?method=download&amp;shareKey=6c7821cf90928a4e7a11a12ac5e8303e">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB43c55290734cb969dee039a4cdc738da?method=download&amp;shareKey=11d37e585bcefdf5330dc34e56a217ca">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB79bdcad8140728f20c0500fe5dfb5fce?method=download&amp;shareKey=45c956aa4eda474b264e4d134670980c">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEBc7f38c862c237d3822d396f779cf0f7b?method=download&amp;shareKey=c59576e350e01ddf27b131ae81855309">
+<meta property="article:published_time" content="2021-04-15T07:40:00.000Z">
+<meta property="article:modified_time" content="2021-04-15T07:45:49.516Z">
+<meta property="article:author" content="developeng">
+<meta property="article:tag" content="Markdown">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/WEBd01049dda0faae45089f3b43e401e946?method=download&amp;shareKey=c83f0e8b72ef41256ac3d0f039a9bf9d">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://developeng.com/2021/04/15/2021-04-15Mac配置jenkins自动打包ipa并上传蒲公英/"/>
+
+
+
+
+
+  <title>mac配置jenkins自动打包ipa并上传蒲公英 | developeng</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">developeng</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">雷锋塔下盼轮回，不及你浅笑一枚。西湖细柳缘纷飞，可叹可恨独自醉。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://developeng.com/2021/04/15/2021-04-15Mac%E9%85%8D%E7%BD%AEjenkins%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85ipa%E5%B9%B6%E4%B8%8A%E4%BC%A0%E8%92%B2%E5%85%AC%E8%8B%B1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="developeng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/headImage.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="developeng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mac配置jenkins自动打包ipa并上传蒲公英</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-15T15:40:00+08:00">
+                2021-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Markdown/" itemprop="url" rel="index">
+                    <span itemprop="name">Markdown</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="安装jenkins"><a href="#安装jenkins" class="headerlink" title="安装jenkins"></a>安装jenkins</h3><p>使用brew 命令行安装jenkins</p>
+<pre><code>//安装jenkins
+brew install jenkins
+</code></pre><p>扩展：</p>
+<pre><code>//卸载jenkins
+brew uninstall jenkins
+或者：
+&apos;/Library/Application Support/Jenkins/Uninstall.command&apos;
+</code></pre><p>如果卸载了依然可以访问localhost:8080，需要查找8080端口并杀死，停止jenkins</p>
+<pre><code>//查找8080 端口
+sudo lsof -i :8080
+//根据Pid杀死进程
+sudo kill -9 pid（对应的pid号）
+//停止jenkins
+brew services stop jenkins
+</code></pre><h3 id="Jenkins-的启动与关闭"><a href="#Jenkins-的启动与关闭" class="headerlink" title="Jenkins 的启动与关闭"></a>Jenkins 的启动与关闭</h3><pre><code>//启动
+brew services start jenkins
+//关闭
+brew services stop jenkins
+//重启
+brew services restart jenkins
+</code></pre><p>启动后浏览器就可以访问:localhost:8080</p>
+<h3 id="配置Jenkins"><a href="#配置Jenkins" class="headerlink" title="配置Jenkins"></a>配置Jenkins</h3><h4 id="浏览器打开localhost-8080后出现如图所示界面，根据文件地址找到jenkins的初始化地址"><a href="#浏览器打开localhost-8080后出现如图所示界面，根据文件地址找到jenkins的初始化地址" class="headerlink" title="浏览器打开localhost:8080后出现如图所示界面，根据文件地址找到jenkins的初始化地址"></a>浏览器打开localhost:8080后出现如图所示界面，根据文件地址找到jenkins的初始化地址</h4><p><img src="https://note.youdao.com/yws/api/personal/file/WEBd01049dda0faae45089f3b43e401e946?method=download&amp;shareKey=c83f0e8b72ef41256ac3d0f039a9bf9d" alt="image"></p>
+<h4 id="填充密码后继续安装，选择推荐安装"><a href="#填充密码后继续安装，选择推荐安装" class="headerlink" title="填充密码后继续安装，选择推荐安装"></a>填充密码后继续安装，选择推荐安装</h4><p><img src="https://note.youdao.com/yws/api/personal/file/WEB6c9f3ef6d2c6bdf6dfc792470de9015c?method=download&amp;shareKey=25f966bf5977cbdc6dbf08941df27f0e" alt="image"></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEB43866c28161afb90ec4863237a610500?method=download&amp;shareKey=be8d06224b679e51edf07d918515a6cf" alt="image"></p>
+<p>等待插件安装结束后进入（如果安装失败，进入后会有插件缺失错误提示，可以去插件管理中重新安装）</p>
+<h4 id="创建管理员"><a href="#创建管理员" class="headerlink" title="创建管理员"></a>创建管理员</h4><p><img src="https://note.youdao.com/yws/api/personal/file/WEBdf578c9748c7bb9c835cd63ec868ccd2?method=download&amp;shareKey=7f8b60ce2b2d3b5550619e969d1b74c0" alt="image"></p>
+<p>如果管理员密码忘记了，需要卸载重新安装</p>
+<pre><code>//卸载流程：
+sudo rm -rf /Users/Shared/Jenkins
+sudo dscl . -delete /Users/jenkins
+sudo dscl . -delete /Groups/jenkins
+sudo rm -f /etc/newsyslog.d/jenkins.conf
+pkgutil --pkgs | grep &apos;org\.jenkins-ci\.&apos; | xargs -n 1 sudo pkgutil —forget
+</code></pre><p><img src="https://note.youdao.com/yws/api/personal/file/WEBf75f6165148f9ded87f9f5f2a6587469?method=download&amp;shareKey=e039d3491fde3acd7f67ca1304ee0024" alt="image"></p>
+<p>填写完成后，保存进入jenkins</p>
+<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><h4 id="在Jenkins中配置Xcode工程"><a href="#在Jenkins中配置Xcode工程" class="headerlink" title="在Jenkins中配置Xcode工程"></a>在Jenkins中配置Xcode工程</h4><p>选择系统管理–&gt;插件管理</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEBdeb6eccd37a399027fcd19ac575f640a?method=download&amp;shareKey=29f92aeb8e7700d18e4bad85213581c1" alt="image"></p>
+<p>安装两个插件Keychains and Provisioning Profiles Management和 Xcode integration</p>
+<p>在可选插件中输入 插件名称，查找安装</p>
+<h3 id="建项目"><a href="#建项目" class="headerlink" title="建项目"></a>建项目</h3><p>上述操作结束后，返回首页，点击 新建任务–&gt; 输入一个任务名称 –&gt; 构建一个自由风格的软件项目</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEBc4af7144edd8ad3d524078d17cad1a8b?method=download&amp;shareKey=be0ae4ee8d63f416a78c79bd0b39df53" alt="image"></p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><h6 id="1-描述（可以随便输入，项目介绍）"><a href="#1-描述（可以随便输入，项目介绍）" class="headerlink" title="1.描述（可以随便输入，项目介绍）"></a>1.描述（可以随便输入，项目介绍）</h6><p><img src="https://note.youdao.com/yws/api/personal/file/WEBa2379f9ca427ace89cc603243cb8de38?method=download&amp;shareKey=b44635b86c24f8210f26bdaa2035fc98" alt="image"></p>
+<h6 id="2-源码管理"><a href="#2-源码管理" class="headerlink" title="2.源码管理"></a>2.源码管理</h6><p>选择git ,Repository URL输入git 仓库地址,并指定分支名称，如图：</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEBc6c3a06a8146a61802283cacb7acb571?method=download&amp;shareKey=8d6023c8f2372e530074598dce8cfb6c" alt="image"></p>
+<p>到这一步可以立即构建一下，<br><img src="https://note.youdao.com/yws/api/personal/file/WEBce627d6882762b77c2be69ea675c0c90?method=download&amp;shareKey=b266b41c66c7367b040fd1455bd2509a" alt="image"></p>
+<h6 id="3-构建触发器和构建环境不用选择，直接跳过"><a href="#3-构建触发器和构建环境不用选择，直接跳过" class="headerlink" title="3.构建触发器和构建环境不用选择，直接跳过"></a>3.构建触发器和构建环境不用选择，直接跳过</h6><p>如果不想设置定时出发构建，这一步骤可以直接跳过</p>
+<p>定时构建：</p>
+<pre><code>一些定时构建的表达式例子：
+每30分钟构建一次：H/30 * * * *
+每2个小时构建一次：H H/2 * * *
+每天中午12点定时构建一次： H 12 * * *
+每天8点，12点，22点构建：H 8,12,22 * * *
+每两小时一次，每个工作日上午9点到下午5点(也许是上午10:38，下午12:38，下午2:38，下午4:38)： H H(9-16)/2 * * 1-5
+</code></pre><p>轮询SCM<br>轮询SCM ，是指定时扫描本地代码仓库的代码是否有变更，如果代码有变更就触发项目构建</p>
+<pre><code>例如：
+每30分钟构建一次：H/30 * * * *
+</code></pre><h6 id="4-构建"><a href="#4-构建" class="headerlink" title="4.构建"></a>4.构建</h6><p>选择增加构建步骤，选择Xcode,如图：<br><img src="https://note.youdao.com/yws/api/personal/file/WEB15d806519ae6c264041474792dcd34dd?method=download&amp;shareKey=2e69ad6a6841918c43b9786e5b2eb525" alt="image"></p>
+<p>按照下图流程依次设置：</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEBf00f35432ee49e9037b324d72a1c2b1c?method=download&amp;shareKey=660742168581955861a4c754e35d90fa" alt="image"></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEBf970584a4992bf593a96315160db9fcd?method=download&amp;shareKey=51dc050c5cc87a7ddc479d587a8d25bd" alt="image"></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEB9fd9c77d8ef294b515d1476128e52bac?method=download&amp;shareKey=0f6aa6dc5450c489490b88af18f93970" alt="image"></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEBf9e2d92eb7878cdac9f160d26470583a?method=download&amp;shareKey=6a4ff1ae3225c914466a9e9457e17e88" alt="image"></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEB8bdb06af4ccfaec9005e93fa66585e4a?method=download&amp;shareKey=13df9f60ca0e66e459deecd1b93da3c5" alt="image"></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEB9df58397471553ed5441d1ed011acc35?method=download&amp;shareKey=76ac1b351e4466171eef61bcbd45a365" alt="image"></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEBd7146ca887816d3c136eefa5e60e4cc0?method=download&amp;shareKey=6c7821cf90928a4e7a11a12ac5e8303e" alt="image"></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEB43c55290734cb969dee039a4cdc738da?method=download&amp;shareKey=11d37e585bcefdf5330dc34e56a217ca" alt="image"></p>
+<p>保存后，立即构建，构建成功后会在如下位置生成ipa包</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEB79bdcad8140728f20c0500fe5dfb5fce?method=download&amp;shareKey=45c956aa4eda474b264e4d134670980c" alt="image"></p>
+<h5 id="4-上传"><a href="#4-上传" class="headerlink" title="4. 上传"></a>4. 上传</h5><h6 id="4-1-上传蒲公英"><a href="#4-1-上传蒲公英" class="headerlink" title="4.1 上传蒲公英"></a>4.1 上传蒲公英</h6><p>在 系统管理 -&gt; 插件管理 -&gt; 可选插件 ——&gt;搜索 Upload to pgyer 并安装</p>
+<p>接下来点击项目–&gt; 配置 –&gt;下拉到最下端“构建后操作”</p>
+<p>点击”增加构建后操作步骤”–&gt; 选择 “Upload to pgyer with apiV1”</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEBc7f38c862c237d3822d396f779cf0f7b?method=download&amp;shareKey=c59576e350e01ddf27b131ae81855309" alt="image"></p>
+<!--###### 4.1 上传fir （这个上传报错，暂时没实现）-->
+<!--先下载fir插件，然后早Jenkins里面点击系统管理-> 管理插件 -> 高级，然后下滑到上传插件，选择下载的fir插件进行上传，上传成功后就可以在已安装中看到了。-->
+<!--接下来点击项目-> 配置 ->下拉到最下端构建后操作-->
+<!--点击增加构建后操作步骤-> 选择 Upload to fir.im -->
+<!--打开fir 官网，获取API token-->
+<p>配置结束！！！</p>
+<p>点击构建 Finished: SUCCESS</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Markdown/" rel="tag"># Markdown</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/02/24/2021-02-24%E7%BB%84%E4%BB%B6%E5%8C%96%EF%BC%9ACocoapods%20%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%85%AC%E5%BC%80%E5%BA%93%E3%80%81%E7%A7%81%E6%9C%89%E5%BA%93/" rel="next" title="组件化：Cocoapods 创建自己的公开库、私有库及维护">
+                <i class="fa fa-chevron-left"></i> 组件化：Cocoapods 创建自己的公开库、私有库及维护
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/headImage.png"
+                alt="developeng" />
+            
+              <p class="site-author-name" itemprop="name">developeng</p>
+              <p class="site-description motion-element" itemprop="description">你好</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/developeng" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/5444591909/profile?topnav=1&wvr=6&is_all=1" target="_blank" title="微博">
+                    
+                      <i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.jianshu.com/u/7315f63c03dd" target="_blank" title="简书">
+                    
+                      <i class="fa fa-fw fa-jianshu"></i>简书</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:developeng@163.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装jenkins"><span class="nav-number">1.</span> <span class="nav-text">安装jenkins</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jenkins-的启动与关闭"><span class="nav-number">2.</span> <span class="nav-text">Jenkins 的启动与关闭</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置Jenkins"><span class="nav-number">3.</span> <span class="nav-text">配置Jenkins</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器打开localhost-8080后出现如图所示界面，根据文件地址找到jenkins的初始化地址"><span class="nav-number">3.1.</span> <span class="nav-text">浏览器打开localhost:8080后出现如图所示界面，根据文件地址找到jenkins的初始化地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#填充密码后继续安装，选择推荐安装"><span class="nav-number">3.2.</span> <span class="nav-text">填充密码后继续安装，选择推荐安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建管理员"><span class="nav-number">3.3.</span> <span class="nav-text">创建管理员</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插件安装"><span class="nav-number">4.</span> <span class="nav-text">插件安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在Jenkins中配置Xcode工程"><span class="nav-number">4.1.</span> <span class="nav-text">在Jenkins中配置Xcode工程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建项目"><span class="nav-number">5.</span> <span class="nav-text">建项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">6.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-描述（可以随便输入，项目介绍）"><span class="nav-number">6.0.0.1.</span> <span class="nav-text">1.描述（可以随便输入，项目介绍）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-源码管理"><span class="nav-number">6.0.0.2.</span> <span class="nav-text">2.源码管理</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-构建触发器和构建环境不用选择，直接跳过"><span class="nav-number">6.0.0.3.</span> <span class="nav-text">3.构建触发器和构建环境不用选择，直接跳过</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-构建"><span class="nav-number">6.0.0.4.</span> <span class="nav-text">4.构建</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-上传"><span class="nav-number">6.0.1.</span> <span class="nav-text">4. 上传</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#4-1-上传蒲公英"><span class="nav-number">6.0.1.1.</span> <span class="nav-text">4.1 上传蒲公英</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">developeng</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+    <!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+<script type="text/javascript" src="/js/src/clipboard.js"></script>
+  
+</body>
+</html>
